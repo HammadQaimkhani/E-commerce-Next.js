@@ -1,5 +1,7 @@
+import Navbar from "@/components/Navbar";
 import { signIn, signOut, useSession } from "next-auth/react";
 export default function Home() {
+  // login or logout Session...
   const { data: session } = useSession();
   if (!session) {
     return (
@@ -14,13 +16,13 @@ export default function Home() {
       </div>
     );
   }
+
   return (
-    <div>
-      "logged in Successfully!!" {session.user.email}
-      <br />
-      {session.user.name}
-      <br />
-      <button onClick={() => signOut()}>signOut</button>
+    <div className='bg-blue-900 min-h-screen flex'>
+      <Navbar />
+      <div className='bg-white flex-grow text-black mt-2 mr-2 rounded-lg'>
+        {session.user.email}
+      </div>
     </div>
   );
 }
