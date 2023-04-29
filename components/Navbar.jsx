@@ -1,12 +1,19 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Navbar = () => {
-  const inActive = "flex gap-2 px-4 py-3 ";
-  const active = inActive + "bg-white text-blue-900 rounded-lg ";
+  // active and inActive classes for Dashboard.
+  const inActive = "flex gap-2 px-4 py-2 my-2 ";
+  const active = inActive + "bg-white text-blue-900 rounded-l-lg ";
+
+  // useRouter for set active class through routes.
+  const router = useRouter();
+  const { pathname } = router;
+
   return (
-    <aside className='p-4'>
-      <Link href={""} className='flex gap-2 mb-4 text-lg'>
+    <aside className='p-4 pr-0'>
+      <Link href={""} className='flex gap-2 mb-4 text-lg pr-4'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -25,7 +32,9 @@ const Navbar = () => {
 
       {/* navBar */}
       <nav className='flex flex-col'>
-        <Link href='/' className={`${active}`}>
+        <Link
+          href='/'
+          className={pathname === "/" ? `${active}` : `${inActive}`}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -41,7 +50,11 @@ const Navbar = () => {
           </svg>
           Dashboard
         </Link>
-        <Link href='/products' className={`${inActive}`}>
+        <Link
+          href='/products'
+          className={
+            pathname.includes("/products") ? `${active}` : `${inActive}`
+          }>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -57,7 +70,11 @@ const Navbar = () => {
           </svg>
           Products
         </Link>
-        <Link href='/orders' className={`${inActive}`}>
+        <Link
+          href='/orders'
+          className={
+            pathname.includes("/orders") ? `${active}` : `${inActive}`
+          }>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -73,7 +90,11 @@ const Navbar = () => {
           </svg>
           Orders
         </Link>
-        <Link href='/setting' className={`${inActive}`}>
+        <Link
+          href='/settings'
+          className={
+            pathname.includes("/settings") ? `${active}` : `${inActive}`
+          }>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
