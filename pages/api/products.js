@@ -6,7 +6,11 @@ const handle = async (req, res) => {
   await mongooseConnect();
 
   if (method === "GET") {
-    res.json(await Products.find());
+    if (req.query?.id) {
+      res.json(await Products.findOne({ _id: req.query.id }));
+    } else {
+      res.json(await Products.find());
+    }
   }
 
   if (method === "POST") {
