@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Products = () => {
-  const [productData, setProductData] = useState("");
+  const [productData, setProductData] = useState([]);
   // useEffect for get the data from user
   useEffect(() => {
-    axios.get("/api/products").then(({ data }) => {
+    axios.get("/api/products").then(response => {
+      const { data } = response;
       setProductData(data);
     });
   }, []);
