@@ -15,7 +15,9 @@ export default function Home() {
             alt=''
             className='rounded-full w-6 h-6  bg-cover'
           />
-          <span className='text-sm text-black'>{session?.user?.name}</span>
+          <span className='text-sm text-black font-semibold'>
+            {session?.user?.name}
+          </span>
         </div>
       </div>
     </Layout>

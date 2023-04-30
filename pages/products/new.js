@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const NewProduct = () => {
@@ -7,16 +8,21 @@ const NewProduct = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [gotoProducts, setGotoProducts] = useState(false);
+
+  //useRouter to set the routes.
+  const router = useRouter();
 
   // create a function to add product in DB.
   const createProduct = async e => {
     e.preventDefault();
-    await axios.post("/api/products", {
-      title,
-      description,
-      price,
-    });
+    const data = { title, description, price };
+    await axios.post("/api/products", data);
+    setGotoProducts(true);
   };
+  if (gotoProducts) {
+    router.push("/products");
+  }
 
   return (
     <Layout>
