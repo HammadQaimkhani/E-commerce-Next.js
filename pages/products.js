@@ -20,14 +20,14 @@ const Products = () => {
         className='bg-blue-900 text-white p-2 rounded-lg'>
         Add new products
       </Link>
-      <table className='basic mt-2'>
+      <table className='basic mt-4'>
         <thead>
           <tr>
-            <td>Products Name</td>
+            <td className='w-full'>Products Name</td>
           </tr>
         </thead>
-        {productData.map((product, index) => (
-          <tbody>
+        <tbody>
+          {productData.map((product, index) => (
             <tr key={index}>
               <td>{product.title}</td>
               <td className='flex gap-2'>
@@ -67,8 +67,8 @@ const Products = () => {
                 </Link>
               </td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </Layout>
   );

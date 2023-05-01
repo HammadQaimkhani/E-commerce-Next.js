@@ -18,15 +18,32 @@ const DeletePage = () => {
     }
   }, [id]);
 
+  const deleteProduct = async () => {
+    await axios.delete("/api/products?id=" + id);
+    router.push("/products");
+  };
+
   //   set Route if click any button
   const goBack = () => {
     return router.push("/products");
   };
   return (
     <Layout>
-      <h1>Do you really want to delete {productData.titles} </h1>
-      <button>yes</button>
-      <button onClick={goBack}>no</button>
+      <h1 className='text-center'>
+        Do you really want to delete itmes {productData?.title}{" "}
+      </h1>
+      <div className='flex gap-2 justify-center'>
+        <button
+          onClick={deleteProduct}
+          className='px-4 py-1 bg-red-500 rounded-md text-white'>
+          yes
+        </button>
+        <button
+          onClick={goBack}
+          className='px-4 py-1 bg-gray-500 rounded-md text-white'>
+          no
+        </button>
+      </div>
     </Layout>
   );
 };

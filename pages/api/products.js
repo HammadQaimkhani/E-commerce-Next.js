@@ -36,7 +36,7 @@ const handle = async (req, res) => {
 
   // delete req for delete the product.
   if (method === "DELETE") {
-    const deleteData = await Products.deleteOne({ _id });
+    const deleteData = await Products.deleteOne({ _id: req.query?.id });
     res.json(deleteData);
   }
 };
