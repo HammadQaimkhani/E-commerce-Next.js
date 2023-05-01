@@ -8,7 +8,6 @@ export default function EditProduct() {
   // useState for our inputs feilds.
 
   const [editProduct, setEditProduct] = useState("");
-  const [gobackProduct, setGobackProduct] = useState(false);
   // get routes
   const router = useRouter();
   const { id } = router.query;
@@ -23,26 +22,10 @@ export default function EditProduct() {
     });
   }, [id]);
 
-  // function to edit the data.
-  const editData = async () => {
-    await axios.put("/api/products", {
-      _id,
-      title,
-      description,
-      price,
-    });
-    setGobackProduct(true);
-  };
-
-  if (gobackProduct) {
-    router.push("/products");
-  }
-
   return (
     <Layout>
       <h1>Edit Products</h1>
-
-      <ProductForm />
+      {editProduct && <ProductForm {...editProduct} />}
     </Layout>
   );
 }

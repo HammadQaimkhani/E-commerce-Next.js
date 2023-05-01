@@ -33,6 +33,12 @@ const handle = async (req, res) => {
     );
     res.json(updateData);
   }
+
+  // delete req for delete the product.
+  if (method === "DELETE") {
+    const deleteData = await Products.deleteOne({ _id });
+    res.json(deleteData);
+  }
 };
 
 export default handle;
