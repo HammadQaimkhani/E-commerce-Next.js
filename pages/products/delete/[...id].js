@@ -20,7 +20,7 @@ const DeletePage = () => {
 
   const deleteProduct = async () => {
     await axios.delete("/api/products?id=" + id);
-    router.push("/products");
+    goBack();
   };
 
   //   set Route if click any button
@@ -30,7 +30,7 @@ const DeletePage = () => {
   return (
     <Layout>
       <h1 className='text-center'>
-        Do you really want to delete itmes {productData?.title}{" "}
+        Do you really want to delete {productData?.title}
       </h1>
       <div className='flex gap-2 justify-center'>
         <button

@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -8,6 +7,7 @@ const ProductForm = ({
   title: editTitle,
   description: editDescription,
   price: editPrice,
+  images,
 }) => {
   // useState for our inputs feilds.
   const [title, setTitle] = useState(editTitle || "");
@@ -53,10 +53,11 @@ const ProductForm = ({
         placeholder='product name'
         className='focus:border-blue-900'
       />
+
       {/* description */}
       <label>Description</label>
       <textarea
-        className=''
+        className='h-28'
         placeholder='Description '
         value={description}
         onChange={e => setDescription(e.target.value)}
