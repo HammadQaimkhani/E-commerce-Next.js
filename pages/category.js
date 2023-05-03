@@ -1,19 +1,24 @@
 import Layout from "@/components/Layout";
+import axios from "axios";
 import { useState } from "react";
 
 const CategoriesPage = () => {
   // category states
   const [category, setCategory] = useState("");
   //function to save the category data.
-  const submitCategory = e => {
+  const saveCategory = async e => {
     e.preventDefault();
+    await axios.post("/api/category", {
+      category,
+    });
+    setCategory("");
   };
 
   return (
     <Layout>
       <h1>Categories </h1>
       <label>New Category name</label>
-      <form onSubmit={submitCategory} className='flex gap-2'>
+      <form onSubmit={saveCategory} className='flex gap-2'>
         <input
           type='text'
           value={category}
