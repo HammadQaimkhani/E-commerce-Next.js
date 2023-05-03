@@ -12,6 +12,8 @@ const handle = async (req, res) => {
     res.json(categoryDoc);
   }
   if (method === "GET") {
+    const getCategory = await Category.find();
+    res.json(getCategory);
   }
 };
 
