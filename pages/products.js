@@ -24,6 +24,7 @@ const Products = () => {
         <thead className='w-full'>
           <tr>
             <td className='w-full'>Products Name</td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
