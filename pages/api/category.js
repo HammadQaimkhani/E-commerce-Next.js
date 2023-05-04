@@ -28,6 +28,11 @@ const handle = async (req, res) => {
     );
     res.json(getCategory);
   }
+  // delete the category.
+  if (method === "DELETE") {
+    const deleteData = await Category.deleteOne({});
+    res.json(deleteData);
+  }
 };
 
 export default handle;
