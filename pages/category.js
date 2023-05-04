@@ -1,15 +1,17 @@
 import Layout from "@/components/Layout";
-import { data } from "autoprefixer";
 import axios from "axios";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const CategoriesPage = () => {
+const CategoriesPage = ({ swal }) => {
   // category states
   const [editCategory, setEditCategory] = useState(null);
   const [category, setCategory] = useState("");
   const [parentCategory, setParentCategory] = useState("");
   const [getCategory, setGetCategory] = useState([]);
+
+  // use router to get the parmas.
+  const router = useRouter();
 
   useEffect(() => {
     fetchCategory();
@@ -30,14 +32,15 @@ const CategoriesPage = () => {
       const data = { category, parentCategory };
       data._id = editCategory._id;
       await axios.put("/api/category", data);
+      setEditCategory(null);
     } else {
       await axios.post("/api/category", {
         category,
         parentCategory,
       });
-      setCategory("");
-      fetchCategory();
     }
+    setCategory("");
+    fetchCategory();
   };
 
   // onClick method on edit button.
@@ -45,6 +48,11 @@ const CategoriesPage = () => {
     setEditCategory(data);
     setCategory(data.name);
     setParentCategory(data?.parent?._id);
+  };
+  // delete the category.
+  const deleteCategory = async () => {
+    const { id } = router.query;
+    await axios.delete("/api/category");
   };
 
   return (
@@ -99,7 +107,9 @@ const CategoriesPage = () => {
                     onClick={() => editCategoryFunc(item)}>
                     edit
                   </button>
-                  <button className='btn-primary'>delete</button>
+                  <button className='btn-primary' onClick={deleteCategory}>
+                    delete
+                  </button>
                 </td>
               </tr>
             ))}
