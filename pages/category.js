@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const CategoriesPage = ({ swal }) => {
+const CategoriesPage = () => {
   // category states
   const [editCategory, setEditCategory] = useState(null);
   const [category, setCategory] = useState("");
@@ -47,12 +47,14 @@ const CategoriesPage = ({ swal }) => {
   const editCategoryFunc = data => {
     setEditCategory(data);
     setCategory(data.name);
-    setParentCategory(data?.parent?._id);
+    // setParentCategory(data.parent._id);
   };
+
   // delete the category.
-  const deleteCategory = async () => {
-    const { id } = router.query;
-    await axios.delete("/api/category");
+  const deleteCategory = async categoryData => {
+    const { _id } = categoryData;
+    console.log(_id);
+    await axios.delete("/api/category?_id=" + _id);
   };
 
   return (
@@ -107,7 +109,9 @@ const CategoriesPage = ({ swal }) => {
                     onClick={() => editCategoryFunc(item)}>
                     edit
                   </button>
-                  <button className='btn-primary' onClick={deleteCategory}>
+                  <button
+                    className='btn-primary'
+                    onClick={() => deleteCategory(item)}>
                     delete
                   </button>
                 </td>
