@@ -14,9 +14,10 @@ const handle = async (req, res) => {
     });
   });
 
-  console.log(files.length);
+  console.log("length", files.files.length);
   res.json("ok");
   if (method === "POST") {
+    // const
   }
 };
 
