@@ -55,6 +55,7 @@ const CategoriesPage = () => {
     const { _id } = categoryData;
     console.log(_id);
     await axios.delete("/api/category?_id=" + _id);
+    fetchCategory();
   };
 
   return (
